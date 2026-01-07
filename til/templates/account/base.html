@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
         {% block body %}
-            {% if messages %}
-                <div>
-                    <strong>{% trans "Messages:" %}</strong>
-                    <ul>
-                        {% for message in messages %}<li>{{ message }}</li>{% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-            {% block content %} {% endblock %}
-{% endblock %}
-          
+            {% block content %}
+                {% if messages %}
+                    <div>
+                         <strong>{% trans "Messages:" %}</strong>
+                         {% for message in messages %}<li>{{ message }}</li>{% endfor %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+        {% endblock %}
+                
