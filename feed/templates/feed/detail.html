@@ -1,15 +1,11 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
 
-{% block title %} 
-    PRAVEEN
+{% block title %}
+    {{post.text}} by {{post.author}}
 {% endblock %}
 
-{% block body %} 
-    {% for post in posts %}
-    
-    <!-- component is from https://www.creative-tim.com/twcomponents/component/post-article-->
-    
+{% block body %}
     <div class="max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md" style = 'width: 60rem'>
         <div class="flex justify-between items-center">
             <span class="font-light text-gray-600">{{post.date|date:"F j, Y, g:i a"}}</span>
@@ -30,6 +26,4 @@
             </div>
         </div>
     </div>
-
-    {% endfor %}
 {% endblock %}
