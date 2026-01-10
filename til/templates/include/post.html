@@ -1,10 +1,17 @@
 {% load thumbnail %}
+<link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+    />
     
     <!-- component is from https://www.creative-tim.com/twcomponents/component/post-article-->
     <div class="max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md" style = 'width: 60rem'>
             <div class="flex justify-between items-center">
                 <span class="font-light text-gray-600">{{post.date|date:"F j, Y, g:i a"}}</span>
-            {% comment %} <a class="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500" href="#">Design</a> {% endcomment %}
+             <span
+                class="inline-flex items-center justify-center h-15 w-12 text-lg text-gray-400"
+                ><i class="bx bxs-ghost"></i
+              ></span>
             </div>
             <div class="mt-2">
                 <p class="mt-2 text-gray-600">{{post.text}}</p>
