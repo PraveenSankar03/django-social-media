@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block body %} 
+    <div id="post-container">
     {% for post in posts %}
         {% include 'include/post.html' with post=post show_detail_link=True %}
     {% endfor %}
+    </div>
 {% endblock %}
