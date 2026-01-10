@@ -16,13 +16,24 @@
 	<div class="text-center px-3 pb-6 pt-2">
 		<h3 class=" text-sm bold font-sans">{{user.username}}</h3>
 	</div>
+  {% if request.user.is_authenticated %}
+    {% if request.user != user %}
+      <div class="ml-auto">
+        <button class="bg-blue-500 hover:bg-blue-700 px-10 mx-20 mb-5 text-white font-bold py-2 px-4 rounded js-follow" data-username = '{{ user.username }}' type="button">
+        <span class="js-follow-text">Follow</span>
+        </button>
+      </div>
+    {% endif %}
+  {% else %}
+    <div class=" px-10 ml-6 text-black font-bold pb-2 rounded">login to follow this user</div>
+  {% endif %}
   	<div class="flex justify-center pb-3">
       <div class="text-center mr-3 border-r pr-3">
         <h2>{{ total_posts }}</h2>
         <span>Posts</span>
       </div>
       <div class="text-center">
-        <h2>42</h2>
+        <h2>0</h2>
         <span>Friends</span>
       </div>
   	</div>

@@ -34,7 +34,7 @@
               <span class="text-sm font-medium">Home</span>
             </a>
           </li>
-          {% if user.is_authenticated %}
+        {% if request.user.is_authenticated %}
           <li>
             <a
               href="{% url 'feed:new_post' %}"
@@ -72,7 +72,7 @@
               <span class="text-sm font-medium">Login</span>
             </a>
           </li>
-          {% endif %}
+        {% endif %}
         </ul>
       </div>
       <div class="p-16">
