@@ -22,7 +22,13 @@
         <button class="bg-blue-500 hover:bg-blue-700 inline-flex w-40 justify-center mx-20 mb-5 text-white font-bold py-2 rounded js-follow" data-username = '{{ user.username }}' data-action = 'follow' 
         data-url = "{% url 'profiles:follow' user.username %}"
         type="button">
-        <span class="js-follow-text">Follow</span>
+        <span class="js-follow-text">
+          {% if you_follow %}
+            Unfollow
+          {% else %}
+            Follow
+          {% endif %}
+        </span>
         </button>
       </div>
     {% endif %}
