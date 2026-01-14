@@ -20,7 +20,11 @@
                 {% if show_detail_link %}
                     <a class="text-blue-600 hover:underline" href="{% url 'feed:detail' post.id %}">Read more</a>
                 {% else %}
-                    <span>&nbsp;</span>
+                <div class="post">
+                    <button class="delete-post" type="button" data-url="{% url 'feed:delete' post.id %}" style="border:1px solid white; padding-left: 5px; padding-right: 5px; padding-bottom: 2px; padding-top: 2px; background-color: blueviolet; color: white; font-weight: bold;">
+                            Delete
+                    </button>
+                </div>
                 {% endif %}
                 <div>
                     <a class="flex items-center" href="{% url 'profiles:detail' post.author.username %}">

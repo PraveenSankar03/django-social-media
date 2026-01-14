@@ -1,8 +1,9 @@
 from django.views.generic import ListView, DetailView, TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from followers.models import Follower
+from django.http import JsonResponse
 from .models import Post
 
 class Homepage(TemplateView):
@@ -29,6 +30,26 @@ class Homepage(TemplateView):
             posts = Post.objects.all().order_by('-id')[0:30]
         context['posts'] = posts
         return context
+    
+class DeletePost(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = '/'
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.author != request.user:
+            return JsonResponse({
+                "success": False,
+                "error": "This post can only be deleted by the account holder"
+            })
+
+        self.object.delete()
+        
+        return JsonResponse({
+            "success":True,
+            "redirect_url": str(self.success_url)
+        })
 
 class PostDetailView(DetailView):
     http_method_names = ['get']

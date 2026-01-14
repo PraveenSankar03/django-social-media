@@ -84,3 +84,23 @@ $(document).on("click", ".js-follow", function(e) {
         }
     });
 })
+
+.on("click", ".delete-post", function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        type:'POST',
+        url: $(this).data("url"),
+        success: function(response) {
+            if (response.success) {
+                window.location.href = response.redirect_url;
+            } else{
+                alert(response.error)
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr.status);
+            alert('process failed');
+        }
+    })
+})
