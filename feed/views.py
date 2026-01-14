@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.db.models import Q
 from followers.models import Follower
 from django.http import JsonResponse
 from .models import Post
@@ -24,8 +25,10 @@ class Homepage(TemplateView):
                 posts = Post.objects.all().order_by('-id')[0:30]
                 context['post'] = posts
             else:
-                posts = Post.objects.filter(author__in = following).order_by('-id')[0:30]
-
+                posts = Post.objects.filter(
+                    Q(author__in = following) | Q(author=self.request.user)
+                ).order_by('-id')[0:30]
+                
         else:
             posts = Post.objects.all().order_by('-id')[0:30]
         context['posts'] = posts
